@@ -2,27 +2,153 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Formation | AVENIR+</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formations | AVENIR+</title>
+
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#f5f7fa;color:#10233f}
-header{background:#10233f;color:#fff;padding:25px;text-align:center}
-header h1{font-size:34px;margin:0}
-header span{color:#7dff65}
-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:15px}
-nav a{color:#fff;text-decoration:none;border:1px solid #7dff65;border-radius:8px;padding:8px 12px;font-size:15px}
-main{padding:35px 20px;text-align:center}
-h2{font-size:27px}
-p{line-height:1.7}
-.carte{background:#fff;border:2px solid #10233f;border-radius:12px;padding:20px;margin:18px auto;max-width:520px}
-.carte h3{margin:0 0 8px;font-size:21px}
-.carte p{margin:0}
-footer{background:#10233f;color:#fff;text-align:center;padding:20px}
+* {
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background: #f5f7fa;
+color: #10233f;
+}
+
+header {
+background: #10233f;
+color: white;
+padding: 25px 15px;
+text-align: center;
+}
+
+header h1 {
+font-size: 30px;
+margin: 0;
+}
+
+header span {
+color: #5ee06a;
+}
+
+nav {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 10px;
+margin-top: 18px;
+}
+
+nav a {
+color: white;
+text-decoration: none;
+border: 1px solid #5ee06a;
+border-radius: 8px;
+padding: 9px 12px;
+font-size: 14px;
+}
+
+nav a:hover {
+background: #5ee06a;
+color: #10233f;
+}
+
+.hero {
+background: #e8f5eb;
+padding: 35px 20px;
+text-align: center;
+}
+
+.hero h2 {
+font-size: 27px;
+}
+
+.hero p {
+line-height: 1.7;
+max-width: 700px;
+margin: auto;
+}
+
+main {
+max-width: 1000px;
+margin: auto;
+padding: 20px;
+}
+
+.intro {
+text-align: center;
+line-height: 1.7;
+}
+
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+gap: 18px;
+margin-top: 25px;
+}
+
+.carte {
+background: white;
+border: 1px solid #dce5ed;
+border-radius: 12px;
+padding: 22px;
+box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.carte h3 {
+color: #10233f;
+}
+
+.carte p {
+line-height: 1.7;
+}
+
+.carte a, .bouton {
+display: inline-block;
+background: #10233f;
+color: white;
+padding: 11px 16px;
+border-radius: 7px;
+text-decoration: none;
+margin-top: 10px;
+}
+
+.carte a:hover, .bouton:hover {
+background: #5ee06a;
+color: #10233f;
+}
+
+.info {
+background: #10233f;
+color: white;
+padding: 28px 20px;
+text-align: center;
+border-radius: 12px;
+margin-top: 30px;
+}
+
+.info h2 {
+color: #5ee06a;
+}
+
+footer {
+background: #10233f;
+color: white;
+text-align: center;
+padding: 20px;
+margin-top: 35px;
+}
 </style>
 </head>
+
 <body>
+
 <header>
 <h1>AVENIR<span>+</span></h1>
+<p>Inspirer les générations, bâtir les solutions, transformer l'avenir.</p>
+
 <nav>
 <a href="index.html">Accueil</a>
 <a href="formation.html">Formation</a>
@@ -32,22 +158,100 @@ footer{background:#10233f;color:#fff;text-align:center;padding:20px}
 <a href="communaute.html">Ma communauté</a>
 </nav>
 </header>
+
+<section class="hero">
+<h2>Bienvenue dans l'espace Formation</h2>
+<p>
+Développez vos compétences, découvrez de nouvelles opportunités
+et préparez votre avenir professionnel avec AVENIR+.
+</p>
+</section>
+
 <main>
-<h2>Formation</h2>
-<p>Développer les compétences des jeunes pour construire leur avenir.</p>
+
+<section class="intro">
+<h2>Nos domaines de formation</h2>
+<p>
+AVENIR+ souhaite rendre les connaissances et les compétences
+accessibles aux jeunes, aux étudiants et aux futurs entrepreneurs.
+</p>
+</section>
+
+<section class="grid">
+
 <div class="carte">
-<h3>Compétences numériques</h3>
-<p>Découvrir les outils du numérique et apprendre à les utiliser au quotidien, pour étudier, travailler ou créer.</p>
+<h3>💻 Informatique et numérique</h3>
+<p>
+Découvrez les bases de l'informatique, les outils numériques,
+la bureautique et les compétences digitales.
+</p>
+<a href="inscription.html">S'intéresser à cette formation</a>
 </div>
+
 <div class="carte">
-<h3>Entrepreneuriat et gestion</h3>
-<p>Comprendre comment lancer un projet, l'organiser et le faire grandir, de l'idée jusqu'à la gestion.</p>
+<h3>🤖 Intelligence artificielle</h3>
+<p>
+Apprenez à découvrir et utiliser les outils d'intelligence
+artificielle pour étudier, créer et travailler.
+</p>
+<a href="inscription.html">S'intéresser à cette formation</a>
 </div>
+
 <div class="carte">
-<h3>Préparation à l'emploi</h3>
-<p>Savoir rédiger un CV, préparer un entretien et se présenter avec confiance auprès des employeurs.</p>
+<h3>📊 Entrepreneuriat et gestion</h3>
+<p>
+Découvrez comment transformer une idée en projet,
+organiser une activité et comprendre la gestion d'entreprise.
+</p>
+<a href="inscription.html">S'intéresser à cette formation</a>
 </div>
+
+<div class="carte">
+<h3>📱 Marketing digital</h3>
+<p>
+Apprenez les bases de la communication digitale,
+des réseaux sociaux et de la promotion en ligne.
+</p>
+<a href="inscription.html">S'intéresser à cette formation</a>
+</div>
+
+<div class="carte">
+<h3>💰 Comptabilité et finances</h3>
+<p>
+Découvrez les principes de la comptabilité,
+la gestion financière et le suivi des activités.
+</p>
+<a href="inscription.html">S'intéresser à cette formation</a>
+</div>
+
+<div class="carte">
+<h3>🌍 Développement personnel</h3>
+<p>
+Renforcez vos compétences en communication,
+organisation, leadership et travail en équipe.
+</p>
+<a href="inscription.html">S'intéresser à cette formation</a>
+</div>
+
+</section>
+
+<section class="info">
+<h2>Votre avenir commence par vos compétences.</h2>
+<p>
+Rejoignez AVENIR+ et manifestez votre intérêt
+pour nos futurs programmes de formation.
+</p>
+<a class="bouton" href="inscription.html">
+Rejoindre AVENIR+
+</a>
+</section>
+
 </main>
-<footer>AVENIR+ — Construisons l'avenir ensemble.</footer>
+
+<footer>
+<p>AVENIR+ — Construisons l'avenir ensemble.</p>
+<p>© 2026 AVENIR+ — Tous droits réservés.</p>
+</footer>
+
 </body>
-  </html>
+</html>
