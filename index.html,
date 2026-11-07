@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AVENIR+ | Construisons l'avenir</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #10233f;
+    }
+    header {
+      background: #10233f;
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 38px;
+      margin: 0;
+    }
+    header span {
+      color: #7dff65;
+    }
+    main {
+      padding: 35px 20px;
+      text-align: center;
+    }
+    h2 {
+      font-size: 27px;
+    }
+    p {
+      line-height: 1.7;
+    }
+    .button {
+      display: inline-block;
+      background: #10233f;
+      color: white;
+      padding: 14px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    footer {
+      background: #10233f;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AVENIR<span>+</span></h1>
+    <p>Inspirer les générations, bâtir les solutions, transformer l'avenir.</p>
+  </header>
+
+  <main>
+    <h2>Bienvenue chez AVENIR+</h2>
+    <p>
+      Former, accompagner et favoriser
+      l'entrepreneuriat et l'emploi des jeunes.
+    </p>
+    <a class="button" href="#espaces">Découvrir AVENIR+</a>
+
+    <h2 id="espaces">Nos six espaces</h2>
+    <p>Accueil · Formation · Entrepreneuriat</p>
+    <p>Emploi · Accompagnement · Ma communauté</p>
+  </main>
+
+  <footer>
+    AVENIR+ — Construisons l'avenir ensemble.
+  </footer>
+</body>
+</html>
