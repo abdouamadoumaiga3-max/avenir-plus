@@ -16,6 +16,10 @@ h2{font-size:30px}
 label{display:block;margin-top:14px;font-weight:bold}
 input,select{width:100%;padding:12px;margin-top:6px;border:1px solid #999;border-radius:8px;font-size:16px;box-sizing:border-box}
 button{width:100%;margin-top:20px;padding:14px;background:#10243f;color:#fff;border:0;border-radius:10px;font-size:17px}
+button:disabled{opacity:.6}
+#message{margin-top:16px;padding:12px;border-radius:8px;display:none;text-align:center;font-weight:bold}
+.ok{background:#d9f7dc;color:#14532d}
+.erreur{background:#fde2e2;color:#7f1d1d}
 footer{background:#10243f;color:#fff;text-align:center;padding:20px}
 </style>
 </head>
@@ -35,22 +39,72 @@ footer{background:#10243f;color:#fff;text-align:center;padding:20px}
 <h2>Inscription</h2>
 <p>Rejoins AVENIR+ et avance avec nous.</p>
 <div class="carte">
-<form>
-<label>Nom complet</label>
-<input type="text" placeholder="Ton nom">
-<label>Email</label>
-<input type="email" placeholder="ton@email.com">
-<label>Ce qui t'intéresse</label>
-<select>
+<form id="formulaire">
+<label for="nom">Nom complet</label>
+<input type="text" id="nom" placeholder="Ton nom" required maxlength="99">
+<label for="email">Email</label>
+<input type="email" id="email" placeholder="ton@email.com" required maxlength="199">
+<label for="interet">Ce qui t'intéresse</label>
+<select id="interet">
 <option>Formation</option>
 <option>Entrepreneuriat</option>
 <option>Emploi</option>
 <option>Accompagnement</option>
 </select>
-<button type="button">S'inscrire</button>
+<button type="submit" id="bouton">S'inscrire</button>
+<div id="message"></div>
 </form>
 </div>
 </main>
 <footer>AVENIR+ — Construisons l'avenir ensemble.</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCqq9qAqtJVnB3L4dAXDO2Bueh9-T2Q6VA",
+  authDomain: "avenir-plus-62cb5.firebaseapp.com",
+  projectId: "avenir-plus-62cb5",
+  storageBucket: "avenir-plus-62cb5.firebasestorage.app",
+  messagingSenderId: "129233032790",
+  appId: "1:129233032790:web:4b349e568f98e83a1e4df7"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const formulaire = document.getElementById("formulaire");
+const bouton = document.getElementById("bouton");
+const message = document.getElementById("message");
+
+function afficher(texte, type) {
+  message.textContent = texte;
+  message.className = type;
+  message.style.display = "block";
+}
+
+formulaire.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  bouton.disabled = true;
+  bouton.textContent = "Envoi en cours...";
+  message.style.display = "none";
+  try {
+    await addDoc(collection(db, "inscriptions"), {
+      nom: document.getElementById("nom").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      interet: document.getElementById("interet").value,
+      date: serverTimestamp()
+    });
+    afficher("Merci ! Ton inscription est bien enregistrée.", "ok");
+    formulaire.reset();
+  } catch (erreur) {
+    console.error(erreur);
+    afficher("Oups, l'inscription n'a pas marché. Réessaie dans un instant.", "erreur");
+  }
+  bouton.disabled = false;
+  bouton.textContent = "S'inscrire";
+});
+</script>
 </body>
 </html>
