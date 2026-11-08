@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Inscription | AVENIR+</title>
+
 <style>
 body{font-family:Arial,sans-serif;margin:0;background:#f5f7fb;color:#10243f}
 header{background:#10243f;color:#fff;padding:20px;text-align:center}
@@ -12,18 +14,22 @@ header h1 span{color:#5ee06a}
 nav a{display:inline-block;color:#fff;border:1px solid #5ee06a;padding:10px 14px;margin:4px;border-radius:10px;text-decoration:none;font-size:15px}
 main{padding:20px;text-align:center}
 h2{font-size:30px}
-.carte{background:#fff;border:2px solid #10243f;border-radius:16px;padding:18px;text-align:left}
+.carte{background:#fff;border:2px solid #10243f;border-radius:16px;padding:18px;text-align:left;max-width:550px;margin:auto}
 label{display:block;margin-top:14px;font-weight:bold}
 input,select{width:100%;padding:12px;margin-top:6px;border:1px solid #999;border-radius:8px;font-size:16px;box-sizing:border-box}
-button{width:100%;margin-top:20px;padding:14px;background:#10243f;color:#fff;border:0;border-radius:10px;font-size:17px}
+button{width:100%;margin-top:20px;padding:14px;background:#10243f;color:#fff;border:0;border-radius:10px;font-size:17px;cursor:pointer}
 button:disabled{opacity:.6}
 #message{margin-top:16px;padding:12px;border-radius:8px;display:none;text-align:center;font-weight:bold}
 .ok{background:#d9f7dc;color:#14532d}
 .erreur{background:#fde2e2;color:#7f1d1d}
+.info{background:#e0edff;color:#10243f}
+.aide{font-size:14px;color:#555}
 footer{background:#10243f;color:#fff;text-align:center;padding:20px}
 </style>
 </head>
+
 <body>
+
 <header>
 <h1>AVENIR<span>+</span></h1>
 <nav>
@@ -35,79 +41,470 @@ footer{background:#10243f;color:#fff;text-align:center;padding:20px}
 <a href="communaute.html">Ma communauté</a>
 </nav>
 </header>
+
 <main>
-<h2>Inscription</h2>
+<h2>Créer mon compte</h2>
 <p>Rejoins AVENIR+ et avance avec nous.</p>
+
 <div class="carte">
+
 <form id="formulaire">
+
 <label for="nom">Nom complet</label>
-<input type="text" id="nom" placeholder="Ton nom" required maxlength="99">
-<label for="email">Email</label>
-<input type="email" id="email" placeholder="ton@email.com" required maxlength="199">
+<input type="text" id="nom" required maxlength="99"
+placeholder="Ton nom complet">
+
 <label for="interet">Ce qui t'intéresse</label>
-<select id="interet">
-<option>Formation</option>
-<option>Entrepreneuriat</option>
-<option>Emploi</option>
-<option>Accompagnement</option>
+<select id="interet" required>
+<option value="Formation">Formation</option>
+<option value="Entrepreneuriat">Entrepreneuriat</option>
+<option value="Emploi">Emploi</option>
+<option value="Accompagnement">Accompagnement</option>
 </select>
-<button type="submit" id="bouton">S'inscrire</button>
+
+<label for="methode">Méthode d'inscription</label>
+<select id="methode">
+<option value="email">Avec mon adresse email</option>
+<option value="telephone">Avec mon numéro de téléphone</option>
+</select>
+
+<div id="zone-email">
+
+<label for="email">Adresse email</label>
+<input type="email" id="email" maxlength="199"
+placeholder="ton@email.com">
+
+<label for="motdepasse">Mot de passe</label>
+<input type="password" id="motdepasse"
+minlength="8" autocomplete="new-password"
+placeholder="Au moins 8 caractères">
+
+<p class="aide">
+Au moins 8 caractères, une majuscule,
+une minuscule et un chiffre.
+</p>
+
+</div>
+
+<div id="zone-telephone" hidden>
+
+<label for="telephone">Numéro de téléphone</label>
+<input type="tel" id="telephone"
+placeholder="+223XXXXXXXX" autocomplete="tel">
+
+<p class="aide">
+Utilise le format international, par exemple +223 pour le Mali.
+</p>
+
+<div id="recaptcha-container"></div>
+
+<button type="button" id="envoyer-code">
+Recevoir mon code SMS
+</button>
+
+<div id="zone-code" hidden>
+<label for="code-sms">Code reçu par SMS</label>
+<input type="text" id="code-sms"
+inputmode="numeric" autocomplete="one-time-code"
+placeholder="Code de vérification">
+
+<button type="button" id="verifier-code">
+Vérifier mon numéro
+</button>
+</div>
+
+</div>
+
+<div id="zone-verification" hidden>
+<p>Un email de vérification vient de t'être envoyé.</p>
+<p>
+Ouvre ta boîte mail, clique sur le lien de vérification,
+puis reviens sur cet onglet.
+Garde cet onglet ouvert.
+</p>
+<button type="button" id="verifier-email">
+J'ai vérifié mon email
+</button>
+</div>
+
+<button type="submit" id="bouton">
+Créer mon compte
+</button>
+
 <div id="message"></div>
-<p style="font-size:14px;text-align:center;margin-top:12px">En t'inscrivant, tu acceptes notre <a href="confidentialite.html">page Confidentialité</a>.</p>
+
+<p style="font-size:14px;text-align:center;margin-top:12px">
+En t'inscrivant, tu acceptes notre
+<a href="confidentialite.html">politique de confidentialité</a>.
+</p>
+
 </form>
 </div>
 </main>
-<footer>AVENIR+ — Construisons l'avenir ensemble.</footer>
+
+<footer>
+AVENIR+ — Construisons l'avenir ensemble.
+</footer>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+import {
+ initializeApp
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+ getAuth,
+ createUserWithEmailAndPassword,
+ sendEmailVerification,
+ reload,
+ RecaptchaVerifier,
+ signInWithPhoneNumber
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+ getFirestore,
+ doc,
+ setDoc,
+ serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCqq9qAqtJVnB3L4dAXDO2Bueh9-T2Q6VA",
-  authDomain: "avenir-plus-62cb5.firebaseapp.com",
-  projectId: "avenir-plus-62cb5",
-  storageBucket: "avenir-plus-62cb5.firebasestorage.app",
-  messagingSenderId: "129233032790",
-  appId: "1:129233032790:web:4b349e568f98e83a1e4df7"
+ apiKey: "AIzaSyCqq9qAqtJVnB3L4dAXDO2Bueh9-T2Q6VA",
+ authDomain: "avenir-plus-62cb5.firebaseapp.com",
+ projectId: "avenir-plus-62cb5",
+ storageBucket: "avenir-plus-62cb5.firebasestorage.app",
+ messagingSenderId: "129233032790",
+ appId: "1:129233032790:web:4b349e568f98e83a1e4df7"
 };
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const db = getFirestore(app);
 
 const formulaire = document.getElementById("formulaire");
 const bouton = document.getElementById("bouton");
 const message = document.getElementById("message");
+const methode = document.getElementById("methode");
 
-function afficher(texte, type) {
-  message.textContent = texte;
-  message.className = type;
-  message.style.display = "block";
+const zoneEmail = document.getElementById("zone-email");
+const zoneTelephone = document.getElementById("zone-telephone");
+const zoneVerification = document.getElementById("zone-verification");
+const zoneCode = document.getElementById("zone-code");
+
+let confirmationSMS = null;
+let recaptchaVerifier = null;
+
+
+function afficher(texte,type="info"){
+ message.textContent = texte;
+ message.className = type;
+ message.style.display = "block";
 }
 
-formulaire.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  bouton.disabled = true;
-  bouton.textContent = "Envoi en cours...";
-  message.style.display = "none";
-  try {
-    await addDoc(collection(db, "inscriptions"), {
-      nom: document.getElementById("nom").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      interet: document.getElementById("interet").value,
-      date: serverTimestamp()
-    });
-    afficher("Merci ! Ton inscription est bien enregistrée.", "ok");
-    formulaire.reset();
-  } catch (erreur) {
-    console.error(erreur);
-    afficher("Oups, l'inscription n'a pas marché. Réessaie dans un instant.", "erreur");
+
+function lireProfil(){
+ return {
+  nom:document.getElementById("nom").value.trim(),
+  interet:document.getElementById("interet").value
+ };
+}
+
+
+function verifierProfil(profil){
+ if(profil.nom.length<2 || profil.nom.length>=100){
+  throw new Error("Le nom doit contenir entre 2 et 99 caractères.");
+ }
+}
+
+
+function changerMethode(){
+
+ const choix=methode.value;
+
+ zoneEmail.hidden=choix!=="email";
+ zoneTelephone.hidden=choix!=="telephone";
+
+ document.getElementById("email").required=choix==="email";
+ document.getElementById("motdepasse").required=choix==="email";
+ document.getElementById("telephone").required=choix==="telephone";
+
+ bouton.hidden=choix!=="email";
+
+ message.style.display="none";
+}
+
+methode.addEventListener("change",changerMethode);
+changerMethode();
+
+
+async function creerProfil(user,type,contact){
+
+ const sauvegarde=sessionStorage.getItem("profilEnAttente");
+
+ if(!sauvegarde){
+  throw new Error("Les informations du profil sont absentes. Recommence l'inscription.");
+ }
+
+ const profil=JSON.parse(sauvegarde);
+ verifierProfil(profil);
+
+ const donnees={
+  nom:profil.nom,
+  interet:profil.interet,
+  createdAt:serverTimestamp()
+ };
+
+ if(type==="email"){
+  donnees.email=contact;
+ }else{
+  donnees.telephone=contact;
+ }
+
+ await setDoc(doc(db,"users",user.uid),donnees);
+
+ sessionStorage.removeItem("profilEnAttente");
+
+ afficher(
+  "Félicitations ! Ton compte AVENIR+ et ton profil ont été créés.",
+  "ok"
+ );
+
+ formulaire.reset();
+ zoneVerification.hidden=true;
+ zoneCode.hidden=true;
+ changerMethode();
+}
+
+
+// INSCRIPTION PAR EMAIL
+
+formulaire.addEventListener("submit",async(e)=>{
+
+ e.preventDefault();
+
+ if(methode.value!=="email")return;
+
+ bouton.disabled=true;
+ bouton.textContent="Création du compte...";
+
+ try{
+
+  const profil=lireProfil();
+  verifierProfil(profil);
+
+  const email=document.getElementById("email").value.trim();
+  const motdepasse=document.getElementById("motdepasse").value;
+
+  sessionStorage.setItem(
+   "profilEnAttente",
+   JSON.stringify(profil)
+  );
+
+  const resultat=await createUserWithEmailAndPassword(
+   auth,email,motdepasse
+  );
+
+  await sendEmailVerification(resultat.user);
+
+  zoneVerification.hidden=false;
+
+  afficher(
+   "Compte créé. Vérifie ton adresse email pour terminer ton inscription.",
+   "info"
+  );
+
+ }catch(erreur){
+
+  console.error(erreur);
+
+  let texte="Impossible de terminer l'inscription. Réessaie.";
+
+  if(erreur.code==="auth/email-already-in-use"){
+   texte="Cette adresse email possède déjà un compte.";
+  }else if(erreur.code==="auth/weak-password"){
+   texte="Le mot de passe ne respecte pas les exigences.";
+  }else if(erreur.code==="auth/invalid-email"){
+   texte="L'adresse email n'est pas valide.";
+  }else if(erreur.code==="auth/operation-not-allowed"){
+   texte="Cette méthode d'inscription n'est pas activée dans Firebase.";
   }
-  bouton.disabled = false;
-  bouton.textContent = "S'inscrire";
+
+  afficher(texte,"erreur");
+
+ }finally{
+
+  bouton.disabled=false;
+  bouton.textContent="Créer mon compte";
+ }
+
 });
+
+
+// TERMINER APRES VERIFICATION EMAIL
+
+document.getElementById("verifier-email")
+.addEventListener("click",async()=>{
+
+ const verifierBouton=document.getElementById("verifier-email");
+ verifierBouton.disabled=true;
+
+ try{
+
+  let user=auth.currentUser;
+
+  if(!user){
+   throw new Error("Session expirée. Recommence l'inscription.");
+  }
+
+  await reload(user);
+
+  user=auth.currentUser;
+
+  if(!user.emailVerified){
+   afficher(
+    "Ton adresse email n'est pas encore vérifiée. Clique d'abord sur le lien reçu.",
+    "erreur"
+   );
+   return;
+  }
+
+  await user.getIdToken(true);
+
+  await creerProfil(user,"email",user.email);
+
+ }catch(erreur){
+
+  console.error(erreur);
+
+  afficher(
+   erreur.message || "La vérification n'a pas abouti.",
+   "erreur"
+  );
+
+ }finally{
+
+  verifierBouton.disabled=false;
+ }
+
+});
+
+
+// INSCRIPTION PAR TELEPHONE
+
+document.getElementById("envoyer-code")
+.addEventListener("click",async()=>{
+
+ const telephone=document.getElementById("telephone").value.trim();
+ const envoyerBouton=document.getElementById("envoyer-code");
+
+ try{
+
+  if(!/^\+[1-9]\d{7,14}$/.test(telephone)){
+   afficher("Entre un numéro international valide, par exemple +223XXXXXXXX.","erreur");
+   return;
+  }
+
+  const profil=lireProfil();
+  verifierProfil(profil);
+
+  sessionStorage.setItem(
+   "profilEnAttente",
+   JSON.stringify(profil)
+  );
+
+  envoyerBouton.disabled=true;
+
+  if(!recaptchaVerifier){
+
+   recaptchaVerifier=new RecaptchaVerifier(
+    auth,
+    "recaptcha-container",
+    {size:"normal"}
+   );
+
+   await recaptchaVerifier.render();
+  }
+
+  confirmationSMS=await signInWithPhoneNumber(
+   auth,
+   telephone,
+   recaptchaVerifier
+  );
+
+  zoneCode.hidden=false;
+
+  afficher(
+   "Code demandé. Consulte tes SMS.",
+   "ok"
+  );
+
+ }catch(erreur){
+
+  console.error(erreur);
+
+  afficher(
+   "Impossible d'envoyer le SMS. Vérifie le numéro et réessaie.",
+   "erreur"
+  );
+
+  if(recaptchaVerifier){
+   recaptchaVerifier.clear();
+   recaptchaVerifier=null;
+  }
+
+ }finally{
+
+  envoyerBouton.disabled=false;
+ }
+
+});
+
+
+// VERIFICATION DU CODE SMS
+
+document.getElementById("verifier-code")
+.addEventListener("click",async()=>{
+
+ const code=document.getElementById("code-sms").value.trim();
+ const verifierBouton=document.getElementById("verifier-code");
+
+ try{
+
+  if(!confirmationSMS){
+   throw new Error("Demande d'abord un code SMS.");
+  }
+
+  if(!code){
+   throw new Error("Entre le code reçu par SMS.");
+  }
+
+  verifierBouton.disabled=true;
+
+  const resultat=await confirmationSMS.confirm(code);
+
+  await creerProfil(
+   resultat.user,
+   "telephone",
+   resultat.user.phoneNumber
+  );
+
+ }catch(erreur){
+
+  console.error(erreur);
+
+  afficher(
+   erreur.message || "Code incorrect ou vérification impossible.",
+   "erreur"
+  );
+
+ }finally{
+
+  verifierBouton.disabled=false;
+ }
+
+});
+
 </script>
 </body>
 </html>
-
-
