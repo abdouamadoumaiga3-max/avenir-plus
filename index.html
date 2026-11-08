@@ -1,43 +1,548 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AVENIR+ | Construisons l'avenir</title>
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:#f5f7fa;color:#10233f}
-header{background:#10233f;color:#fff;padding:25px;text-align:center}
-header h1{font-size:38px;margin:0}
-header span{color:#7dff65}
-main{padding:35px 20px;text-align:center}
-h2{font-size:27px}
-p{line-height:1.7}
-.button{display:inline-block;background:#10233f;color:#fff;padding:14px 25px;border-radius:8px;text-decoration:none;margin:6px}
-.espaces{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:20px}
-.espaces a{color:#10233f;text-decoration:none;border:2px solid #10233f;border-radius:8px;padding:12px 18px;font-size:17px}
-footer{background:#10233f;color:#fff;text-align:center;padding:20px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10233f">
+  <meta name="description" content="AVENIR+ : former, accompagner et favoriser l'entrepreneuriat et l'emploi des jeunes.">
+  <title>AVENIR+ | Construisons votre avenir</title>
+
+  <style>
+    :root {
+      --navy: #10233f;
+      --navy-light: #193657;
+      --green: #7dff65;
+      --white: #ffffff;
+      --light: #f4f7fa;
+      --text: #26364a;
+      --muted: #68788b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    header {
+      background: var(--navy);
+      color: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 12px 0;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: var(--green);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: var(--green);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      transition: .2s;
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: var(--navy);
+    }
+
+    .btn-green:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 18px rgba(125,255,101,.25);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.65);
+      color: var(--white);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      color: var(--white);
+      padding: 90px 0 100px;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 6vw, 58px);
+      line-height: 1.13;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #d8e2ed;
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    section {
+      padding: 75px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .section-heading h2 {
+      color: var(--navy);
+      font-size: clamp(27px, 4vw, 36px);
+      margin-bottom: 12px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .spaces {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .space-card {
+      background: var(--white);
+      padding: 27px;
+      border-radius: 14px;
+      border: 1px solid #e6ebf0;
+      transition: .2s;
+    }
+
+    .space-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(16,35,63,.08);
+    }
+
+    .space-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: #eaffea;
+      border-radius: 12px;
+      font-size: 24px;
+      margin-bottom: 17px;
+    }
+
+    .space-card h3 {
+      color: var(--navy);
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .space-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .space-card a {
+      color: #246d2b;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .about {
+      background: var(--white);
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about-content h2 {
+      color: var(--navy);
+      font-size: 32px;
+      margin-bottom: 18px;
+    }
+
+    .values {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .value {
+      background: #eff9ed;
+      color: #245a28;
+      padding: 9px 16px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .cta {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: #d8e2ed;
+      margin-bottom: 25px;
+    }
+
+    footer {
+      background: #0a192d;
+      color: #d8e2ed;
+      padding: 30px 0;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #d8e2ed;
+      font-size: 13px;
+    }
+
+    .copyright {
+      font-size: 13px;
+      color: #aab8c8;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 800px) {
+      .spaces {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .navbar {
+        justify-content: center;
+      }
+
+      nav {
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .spaces {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 65px 0 75px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      .navbar {
+        flex-direction: column;
+      }
+
+      nav {
+        gap: 10px 15px;
+      }
+
+      section {
+        padding: 55px 0;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-<h1>AVENIR<span>+</span></h1>
-<p>Inspirer les générations, bâtir les solutions, transformer l'avenir.</p>
-</header>
-<main>
-<h2>Bienvenue chez AVENIR+</h2>
-<p>Former, accompagner et favoriser l'entrepreneuriat et l'emploi des jeunes.</p>
-<a class="button" href="#espaces">Découvrir AVENIR+</a>
-<a class="button" href="inscription.html">S'inscrire</a>
-<h2 id="espaces">Nos six espaces</h2>
-<div class="espaces">
-<a href="index.html">Accueil</a>
-<a href="formation.html">Formation</a>
-<a href="entrepreneuriat.html">Entrepreneuriat</a>
-<a href="emploi.html">Emploi</a>
-<a href="accompagnement.html">Accompagnement</a>
-<a href="communaute.html">Ma communauté</a>
-</div>
-</main>
-<footer>AVENIR+ — Construisons l'avenir ensemble.</footer>
+
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">AVENIR<span>+</span></a>
+
+      <nav aria-label="Navigation principale">
+        <a href="#accueil">Accueil</a>
+        <a href="#espaces">Nos espaces</a>
+        <a href="#apropos">À propos</a>
+        <a href="inscription.html">Mon compte</a>
+      </nav>
+
+      <a href="inscription.html" class="btn btn-green">
+        Rejoindre AVENIR+
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">Votre avenir commence ici</div>
+
+          <h1>
+            Donnons aux jeunes les moyens de
+            <span>réussir.</span>
+          </h1>
+
+          <p>
+            AVENIR+ est une plateforme dédiée à la formation,
+            à l'entrepreneuriat, à l'emploi et à l'accompagnement
+            des jeunes pour construire un avenir meilleur.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="inscription.html" class="btn btn-green">
+              Créer mon compte
+            </a>
+
+            <a href="#espaces" class="btn btn-outline">
+              Découvrir nos espaces
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="espaces">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Découvrez les espaces AVENIR+</h2>
+          <p>
+            Retrouvez les services et les opportunités
+            qui vous aident à avancer dans vos projets.
+          </p>
+        </div>
+
+        <div class="spaces">
+
+          <article class="space-card">
+            <div class="space-icon">🎓</div>
+            <h3>Formation</h3>
+            <p>
+              Développez vos connaissances, vos compétences
+              et préparez votre avenir professionnel.
+            </p>
+            <a href="formation.html">Découvrir la formation →</a>
+          </article>
+
+          <article class="space-card">
+            <div class="space-icon">💡</div>
+            <h3>Entrepreneuriat</h3>
+            <p>
+              Découvrez des ressources pour développer
+              vos idées et construire vos projets.
+            </p>
+            <a href="entrepreneuriat.html">Explorer l'entrepreneuriat →</a>
+          </article>
+
+          <article class="space-card">
+            <div class="space-icon">💼</div>
+            <h3>Emploi</h3>
+            <p>
+              Découvrez l'espace dédié aux opportunités
+              professionnelles et aux candidatures.
+            </p>
+            <a href="emploi.html">Accéder à l'emploi →</a>
+          </article>
+
+          <article class="space-card">
+            <div class="space-icon">🤝</div>
+            <h3>Accompagnement</h3>
+            <p>
+              Avancez dans vos projets avec des conseils,
+              des ressources et un accompagnement adapté.
+            </p>
+            <a href="accompagnement.html">Être accompagné →</a>
+          </article>
+
+          <article class="space-card">
+            <div class="space-icon">🌍</div>
+            <h3>Communauté</h3>
+            <p>
+              Découvrez un espace pour échanger,
+              apprendre et partager des expériences.
+            </p>
+            <a href="communaute.html">Rejoindre la communauté →</a>
+          </article>
+
+          <article class="space-card">
+            <div class="space-icon">👤</div>
+            <h3>Espace personnel</h3>
+            <p>
+              Préparez votre compte personnel pour retrouver
+              vos informations et vos futurs services.
+            </p>
+            <a href="inscription.html">Accéder à mon compte →</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="apropos">
+      <div class="container">
+        <div class="about-content">
+          <h2>Notre mission</h2>
+          <p>
+            Former, accompagner et favoriser l'entrepreneuriat
+            et l'emploi des jeunes. AVENIR+ ambitionne de construire
+            un environnement accessible, innovant et utile pour
+            celles et ceux qui souhaitent apprendre, entreprendre
+            et progresser.
+          </p>
+
+          <div class="values">
+            <span class="value">Innovation</span>
+            <span class="value">Accessibilité</span>
+            <span class="value">Intégrité</span>
+            <span class="value">Excellence</span>
+            <span class="value">Solidarité</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <h2>Construisons votre avenir ensemble.</h2>
+        <p>
+          Découvrez AVENIR+ et préparez-vous à saisir
+          de nouvelles possibilités.
+        </p>
+        <a href="inscription.html" class="btn btn-green">
+          Rejoindre AVENIR+
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <a href="index.html" class="logo">AVENIR<span>+</span></a>
+
+        <div class="footer-links">
+          <a href="index.html">Accueil</a>
+          <a href="inscription.html">Mon compte</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+
+      <p class="copyright">
+        © 2026 AVENIR+. Tous droits réservés.
+      </p>
+    </div>
+  </footer>
+
 </body>
-</html>
+            </html>
+            
