@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101a35">
+  <title>AVENIR+ AI</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1224;
+      color: white;
+    }
+    header {
+      padding: 22px 18px;
+      background: #142343;
+      border-bottom: 1px solid #30476c;
+    }
+    header h1 { margin: 0; color: #75baff; }
+    header p { margin-bottom: 0; color: #c2cce0; }
+    main { max-width: 850px; margin: auto; padding: 20px; }
+    .status {
+      background: #142343;
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 18px;
+    }
+    .status span { color: #ffd166; }
+    .card {
+      background: #142343;
+      border: 1px solid #30476c;
+      padding: 18px;
+      border-radius: 14px;
+      margin-bottom: 16px;
+    }
+    .card h2 { color: #75baff; font-size: 19px; }
+    .service {
+      padding: 12px;
+      margin: 8px 0;
+      background: #1d3155;
+      border-radius: 9px;
+    }
+    .chat {
+      min-height: 170px;
+      max-height: 300px;
+      overflow-y: auto;
+      padding: 12px;
+      background: #0b1224;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 9px;
+      border: 1px solid #526b91;
+      background: #0b1224;
+      color: white;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 13px 18px;
+      background: #2679e8;
+      color: white;
+      border: none;
+      border-radius: 9px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      color: #91a4c4;
+      padding: 25px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AVENIR+ AI</h1>
+    <p>Intelligence artificielle centrale d'AVENIR+</p>
+  </header>
+
+  <main>
+    <section class="status">
+      🤖 État du système :
+      <span id="status">Interface initialisée</span>
+      <p>Version 1.0 — Prototype</p>
+    </section>
+
+    <section class="card">
+      <h2>Centre de supervision</h2>
+      <div class="service">🔐 Authentification : à connecter</div>
+      <div class="service">📩 SMS : à connecter</div>
+      <div class="service">✉️ Emails : à connecter</div>
+      <div class="service">🗄️ Base de données : à connecter</div>
+      <div class="service">🛡️ Sécurité : à configurer</div>
+    </section>
+
+    <section class="card">
+      <h2>Assistant AVENIR+ AI</h2>
+      <div class="chat" id="chat">
+        <p><strong>AVENIR+ AI :</strong> Bonjour ! Je suis l'interface de notre future intelligence artificielle.</p>
+        <p>Mon moteur IA n'est pas encore connecté.</p>
+      </div>
+      <form id="chatForm">
+        <input id="question" type="text"
+          placeholder="Écris un message..."
+          autocomplete="off" required>
+        <button type="submit">Envoyer</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Administration</h2>
+      <p>Les outils administratifs seront activés après la mise en place des permissions sécurisées.</p>
+    </section>
+  </main>
+
+  <footer>
+    AVENIR+ — Former, accompagner et favoriser
+    l'entrepreneuriat et l'emploi des jeunes.
+  </footer>
+
+  <script>
+    const form = document.getElementById("chatForm");
+    const input = document.getElementById("question");
+    const chat = document.getElementById("chat");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const message = input.value.trim();
+      if (!message) return;
+
+      const line = document.createElement("p");
+      line.textContent = "Vous : " + message;
+      chat.appendChild(line);
+
+      const response = document.createElement("p");
+      response.textContent =
+        "AVENIR+ AI : Mon moteur d'intelligence artificielle sera connecté lors de la prochaine étape.";
+      chat.appendChild(response);
+
+      input.value = "";
+      chat.scrollTop = chat.scrollHeight;
+    });
+  </script>
+</body>
+</html>
